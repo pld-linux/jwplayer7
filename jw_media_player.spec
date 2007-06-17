@@ -3,7 +3,7 @@
 Summary:	Flash Media Player
 Summary(pl.UTF-8):	Odtwarzacz Flash Media
 Name:		flash_media_player
-Version:	3.8
+Version:	3.9
 Release:	0.1
 License:	Creative Commons
 Group:		Applications/WWW
@@ -12,6 +12,8 @@ Source0:	http://www.jeroenwijering.com/upload/%{name}.zip
 URL:		http://www.jeroenwijering.com/?item=Flash_Media_Player
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		_appdir	%{_datadir}/%{name}
 
 %description
 The Flash Media player supports playback of a single media file of any
@@ -33,10 +35,12 @@ Javascriptu/Actionscriptu.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_appdir}
+cp -a mediaplayer.swf $RPM_BUILD_ROOT%{_appdir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
+%{_appdir}/mediaplayer.swf
