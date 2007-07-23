@@ -1,20 +1,24 @@
-# TODO
-# - all
 Summary:	JW Media Player
 Summary(pl.UTF-8):	Odtwarzacz Flash Media
 Name:		jw_media_player
 Version:	3.99
-Release:	0.2
+Release:	0.3
 License:	Creative Commons
 Group:		Applications/WWW
 Source0:	http://www.jeroenwijering.com/upload/%{name}.zip
 # Source0-md5:	995e438774dba2c1c3919e62749aa735
+Source1:	%{name}-lighttpd.conf
 URL:		http://www.jeroenwijering.com/?item=JW_Media_Player
+BuildRequires:	rpmbuild(macros) >= 1.268
+Requires:	webapps
 Obsoletes:	flash_media_player
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_appdir	%{_datadir}/%{name}
+%define		_webapps	/etc/webapps
+%define		_webapp		%{name}
+%define		_sysconfdir	%{_webapps}/%{_webapp}
+%define		_appdir	%{_datadir}/%{_webapp}
 
 %description
 The JW Media Player (built with Adobe's Flash) supports playback of a
@@ -39,6 +43,13 @@ Javascriptu/Actionscriptu.
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_appdir}
 cp -a mediaplayer.swf $RPM_BUILD_ROOT%{_appdir}
+cp -a %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/lighttpd.conf
+
+%triggerin -- lighttpd
+%webapp_register lighttpd %{_webapp}
+
+%triggerun -- lighttpd
+%webapp_unregister lighttpd %{_webapp}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
