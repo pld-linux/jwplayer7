@@ -4,7 +4,7 @@ Summary:	JW Media Player
 Summary(pl.UTF-8):	Odtwarzacz Flash Media
 Name:		jw_media_player
 Version:	3.99
-Release:	0.1
+Release:	0.2
 License:	Creative Commons
 Group:		Applications/WWW
 Source0:	http://www.jeroenwijering.com/upload/%{name}.zip
@@ -45,4 +45,5 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
+%dir %{_appdir}
 %{_appdir}/mediaplayer.swf
