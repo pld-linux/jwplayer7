@@ -1,3 +1,4 @@
+# TODO: spec filename vs Name
 Summary:	JW Media Player
 Summary(pl.UTF-8):	Odtwarzacz Flash Media
 Name:		jw_media_player
@@ -46,14 +47,14 @@ install -d $RPM_BUILD_ROOT{%{_sysconfdir},%{_appdir}}
 cp -a mediaplayer.swf $RPM_BUILD_ROOT%{_appdir}
 cp -a %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/lighttpd.conf
 
+%clean
+rm -rf $RPM_BUILD_ROOT
+
 %triggerin -- lighttpd
 %webapp_register lighttpd %{_webapp}
 
 %triggerun -- lighttpd
 %webapp_unregister lighttpd %{_webapp}
-
-%clean
-rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
