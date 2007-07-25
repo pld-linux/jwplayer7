@@ -1,9 +1,8 @@
-# TODO: spec filename vs Name
 Summary:	JW Media Player
 Summary(pl.UTF-8):	Odtwarzacz Flash Media
 Name:		jw_media_player
 Version:	3.99
-Release:	0.4
+Release:	1
 License:	Creative Commons
 Group:		Applications/WWW
 Source0:	http://www.jeroenwijering.com/upload/%{name}.zip
