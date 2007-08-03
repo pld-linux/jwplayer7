@@ -1,5 +1,5 @@
 Summary:	JW Media Player
-Summary(pl.UTF-8):	Odtwarzacz Flash Media
+Summary(pl.UTF-8):	Odtwarzacz JW Media
 Name:		jw_media_player
 Version:	3.99
 Release:	1
@@ -27,15 +27,15 @@ single media file of any format the Adobe Flash Player can handle
 (MP3, FLV, SWF, JPG, PNG and GIF). It also supports RSS, XSPF and ATOM
 playlist (with mixed mediatypes and advertisement possibilities), a
 wide range of flashvars (settings) for tweaking both behavior and
-appearance and an extensive, documented javascript/actionscript API.
+appearance and an extensive, documented JavaScript/ActionScript API.
 
 %description -l pl.UTF-8
-Flash Media Player potrafi odtwarzać pliki multimedialne dowolnego
-typu obsługiwanego przez Adobe Flash Player (MP3, FLV, SWF, JPG, PNG i
-GIF). Obsługuje także playlisty RSS/XSPF/ATOM (z mieszanymi typami
-mediów), szeroki zakres ustawień do modyfikowania zarówno zachowania
-jak i wyglądu oraz obszerne, udokumentowane API
-Javascriptu/Actionscriptu.
+JW Media Player (zbudowany z Flashem Adobe) potrafi odtwarzać pliki
+multimedialne dowolnego typu obsługiwanego przez Adobe Flash Player
+(MP3, FLV, SWF, JPG, PNG i GIF). Obsługuje także playlisty
+RSS/XSPF/ATOM (z mieszanymi typami mediów), szeroki zakres ustawień do
+modyfikowania zarówno zachowania jak i wyglądu oraz obszerne,
+udokumentowane API JavaScriptu/ActionScriptu.
 
 %prep
 %setup -q -n %{name}
