@@ -1,12 +1,13 @@
 Summary:	JW Media Player
 Summary(pl.UTF-8):	Odtwarzacz JW Media
 Name:		jw_media_player
-Version:	3.99
+Version:	3.11
 Release:	1
+Epoch:		1
 License:	Creative Commons
 Group:		Applications/WWW
 Source0:	http://www.jeroenwijering.com/upload/%{name}.zip
-# Source0-md5:	995e438774dba2c1c3919e62749aa735
+# Source0-md5:	f6b5b48f7903ee22e26ac157ca095743
 Source1:	%{name}-lighttpd.conf
 URL:		http://www.jeroenwijering.com/?item=JW_Media_Player
 BuildRequires:	rpmbuild(macros) >= 1.268
