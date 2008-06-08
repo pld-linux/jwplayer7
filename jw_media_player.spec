@@ -1,13 +1,14 @@
+%define		ver	%(echo %{version} | tr . -)
 Summary:	JW Media Player
 Summary(pl.UTF-8):	Odtwarzacz JW Media
 Name:		jw_media_player
-Version:	3.11
+Version:	3.16
 Release:	1
 Epoch:		1
 License:	Creative Commons
 Group:		Applications/WWW
-Source0:	http://www.jeroenwijering.com/upload/%{name}.zip
-# Source0-md5:	f6b5b48f7903ee22e26ac157ca095743
+Source0:	http://www.jeroenwijering.com/upload/mediaplayer-%{ver}.zip
+# Source0-md5:	ad0f15198fcdbabe453fe94e193a8764
 Source1:	%{name}-lighttpd.conf
 URL:		http://www.jeroenwijering.com/?item=JW_Media_Player
 BuildRequires:	rpmbuild(macros) >= 1.268
@@ -39,7 +40,7 @@ modyfikowania zarówno zachowania jak i wyglądu oraz obszerne,
 udokumentowane API JavaScriptu/ActionScriptu.
 
 %prep
-%setup -q -n %{name}
+%setup -q -n mediaplayer-%{ver}
 
 %install
 rm -rf $RPM_BUILD_ROOT
