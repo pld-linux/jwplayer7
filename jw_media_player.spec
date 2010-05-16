@@ -12,6 +12,7 @@ Source0:	http://www.jeroenwijering.com/upload/mediaplayer-%{ver}.zip
 Source1:	%{name}-lighttpd.conf
 URL:		http://www.jeroenwijering.com/?item=JW_Media_Player
 BuildRequires:	rpmbuild(macros) >= 1.268
+BuildRequires:	unzip
 Requires:	webapps
 Requires:	webserver(alias)
 Obsoletes:	flash_media_player
