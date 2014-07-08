@@ -2,12 +2,14 @@ Summary:	Flash Video Player for FLV, H.264/MPEG-4, MP3 and YouTube Videos on you
 Summary(pl.UTF-8):	Odtwarzacz JW Media
 Name:		jwplayer
 Version:	6.8
-Release:	0.1
+Release:	0.2
 License:	CC 3.0
 Group:		Applications/WWW
 Source0:	https://account.jwplayer.com/static/download/%{name}-%{version}.zip
 # Source0-md5:	cf4647973e2f0b338d5986745fecb932
-Source1:	lighttpd.conf
+Source1:	https://account.jwplayer.com/static/download/%{name}-skins-free.zip
+# Source1-md5:	fdc9c63a7b533b31d14af5f7e0ae3383
+Source2:	lighttpd.conf
 URL:		http://www.jwplayer.com/about-jwplayer/
 BuildRequires:	rpmbuild(macros) >= 1.268
 BuildRequires:	unzip
@@ -40,14 +42,16 @@ modyfikowania zarówno zachowania jak i wyglądu oraz obszerne,
 udokumentowane API JavaScriptu/ActionScriptu.
 
 %prep
-%setup -qc
+%setup -qc -a1
 mv %{name}/* .
+mv %{name}-skins-free skins
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_sysconfdir},%{_appdir}}
 cp -p *.swf *.js $RPM_BUILD_ROOT%{_appdir}
-cp -p %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/lighttpd.conf
+cp -a skins $RPM_BUILD_ROOT%{_appdir}
+cp -p %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/lighttpd.conf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -66,3 +70,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_appdir}/jwplayer.flash.swf
 %{_appdir}/jwplayer.html5.js
 %{_appdir}/jwplayer.js
+%dir %{_appdir}/skins
+%{_appdir}/skins/five.xml
+%{_appdir}/skins/six.xml
