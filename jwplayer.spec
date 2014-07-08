@@ -1,20 +1,20 @@
 Summary:	Flash Video Player for FLV, H.264/MPEG-4, MP3 and YouTube Videos on your website
 Summary(pl.UTF-8):	Odtwarzacz JW Media
-Name:		jw_media_player
-Version:	5.2
-Release:	1
-Epoch:		1
+Name:		jwplayer
+Version:	6.8
+Release:	0.1
 License:	CC 3.0
 Group:		Applications/WWW
-Source0:	http://www.longtailvideo.com/jw/upload/mediaplayer-viral.zip
-# Source0-md5:	b3c1207f8d78e2181831f057d85b7c05
+Source0:	https://account.jwplayer.com/static/download/%{name}-%{version}.zip
+# Source0-md5:	cf4647973e2f0b338d5986745fecb932
 Source1:	lighttpd.conf
-URL:		http://www.longtailvideo.com/players/jw-flv-player/
+URL:		http://www.jwplayer.com/about-jwplayer/
 BuildRequires:	rpmbuild(macros) >= 1.268
 BuildRequires:	unzip
 Requires:	webapps
 Requires:	webserver(alias)
 Obsoletes:	flash_media_player
+Obsoletes:	jw_media_player
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -40,13 +40,14 @@ modyfikowania zarówno zachowania jak i wyglądu oraz obszerne,
 udokumentowane API JavaScriptu/ActionScriptu.
 
 %prep
-%setup -q -n mediaplayer-%{version}-viral
+%setup -qc
+mv %{name}/* .
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_sysconfdir},%{_appdir}}
-cp -a *.swf $RPM_BUILD_ROOT%{_appdir}
-cp -a %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/lighttpd.conf
+cp -p *.swf *.js $RPM_BUILD_ROOT%{_appdir}
+cp -p %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/lighttpd.conf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -59,8 +60,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc readme.html
+%doc README.html
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/lighttpd.conf
 %dir %{_appdir}
-%{_appdir}/player.swf
-%{_appdir}/yt.swf
+%{_appdir}/jwplayer.flash.swf
+%{_appdir}/jwplayer.html5.js
+%{_appdir}/jwplayer.js
