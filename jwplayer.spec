@@ -2,7 +2,7 @@ Summary:	Flash Video Player for FLV, H.264/MPEG-4, MP3 and YouTube Videos on you
 Summary(pl.UTF-8):	Odtwarzacz JW Media
 Name:		jwplayer
 Version:	6.8
-Release:	0.2
+Release:	1
 License:	CC 3.0
 Group:		Applications/WWW
 Source0:	https://account.jwplayer.com/static/download/%{name}-%{version}.zip
@@ -10,6 +10,7 @@ Source0:	https://account.jwplayer.com/static/download/%{name}-%{version}.zip
 Source1:	https://account.jwplayer.com/static/download/%{name}-skins-free.zip
 # Source1-md5:	fdc9c63a7b533b31d14af5f7e0ae3383
 Source2:	lighttpd.conf
+Source3:	apache.conf
 URL:		http://www.jwplayer.com/about-jwplayer/
 BuildRequires:	rpmbuild(macros) >= 1.268
 BuildRequires:	unzip
@@ -52,9 +53,23 @@ install -d $RPM_BUILD_ROOT{%{_sysconfdir},%{_appdir}}
 cp -p *.swf *.js $RPM_BUILD_ROOT%{_appdir}
 cp -a skins $RPM_BUILD_ROOT%{_appdir}
 cp -p %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/lighttpd.conf
+cp -p %{SOURCE3} $RPM_BUILD_ROOT%{_sysconfdir}/apache.conf
+cp -p $RPM_BUILD_ROOT%{_sysconfdir}/{apache,httpd}.conf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%triggerin -- apache1 < 1.3.37-3, apache1-base
+%webapp_register apache %{_webapp}
+
+%triggerun -- apache1 < 1.3.37-3, apache1-base
+%webapp_unregister apache %{_webapp}
+
+%triggerin -- apache < 2.2.0, apache-base
+%webapp_register httpd %{_webapp}
+
+%triggerun -- apache < 2.2.0, apache-base
+%webapp_unregister httpd %{_webapp}
 
 %triggerin -- lighttpd
 %webapp_register lighttpd %{_webapp}
@@ -65,6 +80,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc README.html
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/apache.conf
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/httpd.conf
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/lighttpd.conf
 %dir %{_appdir}
 %{_appdir}/jwplayer.flash.swf
