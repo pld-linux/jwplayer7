@@ -1,14 +1,14 @@
 Summary:	Flash Video Player for FLV, H.264/MPEG-4, MP3 and YouTube Videos on your website
 Summary(pl.UTF-8):	Odtwarzacz JW Media
 Name:		jwplayer
-Version:	6.8
-Release:	2
+Version:	6.9
+Release:	1
 License:	CC 3.0
 Group:		Applications/WWW
 Source0:	https://account.jwplayer.com/static/download/%{name}-%{version}.zip
-# Source0-md5:	cf4647973e2f0b338d5986745fecb932
+# Source0-md5:	5c59cc46840296d7fe0009290274ce67
 Source1:	https://account.jwplayer.com/static/download/%{name}-skins-free.zip
-# Source1-md5:	fdc9c63a7b533b31d14af5f7e0ae3383
+# Source1-md5:	cff9340ea2173ec51862db7fc7ca155a
 Source2:	lighttpd.conf
 Source3:	apache.conf
 URL:		http://www.jwplayer.com/about-jwplayer/
