@@ -1,3 +1,5 @@
+# NOTE:
+# track releases here: https://github.com/jwplayer/jwplayer/releases
 Summary:	Flash Video Player for FLV, H.264/MPEG-4, MP3 and YouTube Videos on your website
 Summary(pl.UTF-8):	Odtwarzacz JW Media
 Name:		jwplayer
