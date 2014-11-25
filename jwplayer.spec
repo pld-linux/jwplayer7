@@ -3,14 +3,14 @@
 Summary:	Flash Video Player for FLV, H.264/MPEG-4, MP3 and YouTube Videos on your website
 Summary(pl.UTF-8):	Odtwarzacz JW Media
 Name:		jwplayer
-Version:	6.9
-Release:	2
+Version:	6.11
+Release:	1
 License:	CC 3.0
 Group:		Applications/WWW
 Source0:	https://account.jwplayer.com/static/download/%{name}-%{version}.zip
-# Source0-md5:	5c59cc46840296d7fe0009290274ce67
+# Source0-md5:	5774dd78a8b64dfdd393a304aacad669
 Source1:	https://account.jwplayer.com/static/download/%{name}-skins-free.zip
-# Source1-md5:	cff9340ea2173ec51862db7fc7ca155a
+# Source1-md5:	3897a327a1826c67a46078531f9b6a71
 Source2:	lighttpd.conf
 Source3:	apache.conf
 URL:		http://www.jwplayer.com/about-jwplayer/
@@ -46,6 +46,7 @@ udokumentowane API JavaScriptu/ActionScriptu.
 
 %prep
 %setup -qc -a1
+mv %{name}/* .
 mv %{name}-skins-free skins
 
 %install
@@ -80,6 +81,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
+%doc README.html
 %dir %attr(750,root,http) %{_sysconfdir}
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/apache.conf
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/httpd.conf
