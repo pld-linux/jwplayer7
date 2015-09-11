@@ -2,15 +2,13 @@
 # track releases here: https://github.com/jwplayer/jwplayer/releases
 Summary:	Flash Video Player for FLV, H.264/MPEG-4, MP3 and YouTube Videos on your website
 Summary(pl.UTF-8):	Odtwarzacz JW Media
-Name:		jwplayer
-Version:	6.12
+Name:		jwplayer7
+Version:	7.0.3
 Release:	1
 License:	CC 3.0
 Group:		Applications/WWW
-Source0:	https://account.jwplayer.com/static/download/%{name}-%{version}.zip
-# Source0-md5:	ef4790a715bfadf8ccc78b4f91989579
-Source1:	https://account.jwplayer.com/static/download/%{name}-skins-free.zip
-# Source1-md5:	3897a327a1826c67a46078531f9b6a71
+Source0:	https://ssl.p.jwpcdn.com/player/download/jwplayer-%{version}.zip
+# Source0-md5:	37d1ccb210f148c68d63364c848c6068
 Source2:	lighttpd.conf
 Source3:	apache.conf
 URL:		http://www.jwplayer.com/about-jwplayer/
@@ -45,9 +43,7 @@ modyfikowania zarówno zachowania jak i wyglądu oraz obszerne,
 udokumentowane API JavaScriptu/ActionScriptu.
 
 %prep
-%setup -qc -a1
-mv %{name}/* .
-mv %{name}-skins-free skins
+%setup -q -n jwplayer-%{version}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -81,15 +77,25 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README.html
 %dir %attr(750,root,http) %{_sysconfdir}
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/apache.conf
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/httpd.conf
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/lighttpd.conf
 %dir %{_appdir}
-%{_appdir}/jwplayer.flash.swf
-%{_appdir}/jwplayer.html5.js
 %{_appdir}/jwplayer.js
+%{_appdir}/provider.cast.js
+%{_appdir}/provider.shaka.js
+%{_appdir}/provider.youtube.js
+%{_appdir}/1.js
+%{_appdir}/jwplayer.flash.swf
+
 %dir %{_appdir}/skins
-%{_appdir}/skins/five.xml
-%{_appdir}/skins/six.xml
+%{_appdir}/skins/beelden.css
+%{_appdir}/skins/bekle.css
+%{_appdir}/skins/five.css
+%{_appdir}/skins/glow.css
+%{_appdir}/skins/roundster.css
+%{_appdir}/skins/seven.css
+%{_appdir}/skins/six.css
+%{_appdir}/skins/stormtrooper.css
+%{_appdir}/skins/vapor.css
